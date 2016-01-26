@@ -3,20 +3,52 @@
 <head>
 	<meta charset="UTF-8">
 	<title>NFL Roster 2</title>
-	<style type="text/css" href="bower_components\bootstrap\dist\css\bootstrap.css" />
-	<style href="bower_components\bootstrap-material-design\dist\css\bootstrap-material-design.css" />
-	<style type="text/css" href="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
-	<style type="text/css" href="assets/styles/style.css" />
+	<link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap.css" />
+	<link rel="stylesheet" href="bower_components\bootstrap-material-design\dist\css\bootstrap-material-design.css" />
+	<link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="assets/styles/style.css" />
 </head>
 
 <body>
-	<h1>My NFL Roster</h1>
-	<script src="assets/scripts/jquery-script.js"></script>
-	<script src="assets/scripts/script.js"></script>
+	<div class="panel container">
+		<div class="panel-heading">
+			<header>
+				<h1>MY NFL Roster2</h1>
+			</header>
+		</div>
+		<div class="panel-body">
+			<div class="player-roster">
+				<div class="player-card">
+					<img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" />
+					<br/>
+					<span>Name:</span>
+					<br/>
+					<span>Position:</span>
+					<br/>
+					<span>Number:</span>
+					<br/>
+				</div>
+			</div>
+			<div class="player-form ">
+				<form>
+					<input type="text" placeholder="Name" />
+					<input type="text" placeholder="Position" />
+					<input type="number" placeholder="Number" />
+					<button id="addPlayer">Add Player</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="bower_components\jquery\dist\jquery.min.js"></script>
+	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="bower_components\bootstrap\dist\js\bootstrap.js"></script>
 	<script src="bower_components\bootstrap-material-design\dist\js\material.js"></script>
+	<script src="assets/scripts/script.js"></script>
 
+	<script src="assets/scripts/jquery-script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,15 @@
+.player-card {
+	display: inline-block;
+	border: 1px solid black;
+}
+.player-roster {
+	border: 1px solid black;
+}
+.player-form {
+	background-color: black;
+	border: 1px solid black;
+}
+input {
+	padding: 5px;
+	margin: 5px;
+}
