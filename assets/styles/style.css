@@ -1,3 +1,7 @@
+body {
+	/*background-color: lightgrey;*/
+	background-image: url("../images/NFL2.jpg");
+}
 .player-card {
 	display: inline-block;
 	border: 1px solid black;
@@ -6,10 +10,19 @@
 	border: 1px solid black;
 }
 .player-form {
-	background-color: black;
+	/*background-color: darkgreen;*/
+	background-image: url("../images/NFL3.jpg");
 	border: 1px solid black;
 }
 input {
 	padding: 5px;
 	margin: 5px;
+}
+#addPlayer {
+	color:black;
+	margin: 10px;
+}
+#createHeading {
+	background-color: lightgreen;
+	color: black
 }
