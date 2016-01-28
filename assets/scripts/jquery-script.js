@@ -13,24 +13,45 @@ function Player(id, name, pos, num) {
 	this.name = name;
 	this.pos = pos;
 	this.num = num;
+	// this.removePlayer = function(){
+	// 	$('player').remove(this.id)
+	// }
 }
 
-var playerCard = '<div class="player-card">' +
-					'<button class="btn-xs btn-danger">REMOVE</button><br/>' +
-					'<img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" />' +
-					'<br/>' +
-					'<span>Name:</span>' +
-					'<span id="display-name"></span>' +
-					'<br/>' +
-					'<span>Position:</span>' +
-					'<span id="display-position"></span>' +
-					'<br/>' +
-					'<span>Number:</span>' +
-					'<span id="display-number"></span>' +
-					'<br/>' +
-					'<ul id="tester"></ul>' +
-				'</div>';
-				
+// var playerCard = '<div class="player-card">' +
+// 					'<button onclick="removePlayer()" class="btn-xs btn-danger">REMOVE</button><br/>' +
+// 					'<img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" />' +
+// 					'<br/>' +
+// 					'<span>Name:</span>' +
+// 					'<span id="display-name">'+ roster[i].name + '</span>' +
+// 					'<br/>' +
+// 					'<span>Position:</span>' +
+// 					'<span id="display-position">' + roster[i].position + '</span>' +
+// 					'<br/>' +
+// 					'<span>Number:</span>' +
+// 					'<span id="display-number">' + roster[i].number + '</span>' +
+// 					'<br/>' +
+// 					'<ul id="tester"></ul>' +
+// 				'</div>';
+
+//Find index of player by id
+function getIndex(id){
+	for(var i = 0; i < roster.length;i++){
+		if(id === roster[i].id);
+		return i;
+	}
+	return -1;
+}
+
+//Remove player
+function removePlayer(id){
+	var playerIndex = getIndex(id);	
+	if(playerIndex === -1){
+		return {error: "Player does not exist at this index"};
+	}
+	roster.splice(playerIndex, 1);
+}	
+			
 function addPlayer(e) {
 	e.preventDefault;
 	var pName = $('#player-name').val();
@@ -40,18 +61,38 @@ function addPlayer(e) {
 	var pNumber = $('#player-number').val();
 	//$('#display-number').text(pNumber);
 	var temp = new Player(pId, pName, pPosition, pNumber);
-	//$('.player-roster').append('div', temp);
-	$('.player-roster').append(playerCard);
+	//$('.player-roster').append(playerCard);
 	roster.push(temp);
 	pId++;
-	drawPlayer(temp)
+	drawPlayer()
 }
 
-function drawPlayer(p) {
-	$('#display-name').text(p.pName);
-	$('#display-position').text(p.pPosition);
-	$('#display-number').text(p.pNumber);
-
+function drawPlayer() {
+	// $('#display-name').text(p.pName);
+	// $('#display-position').text(p.pPosition);
+	// $('#display-number').text(p.pNumber);	
+var template = '';
+var rosterElem = $('.player-roster');
+for (var i = 0; i < roster.length; i++) {
+	var playerCard = '<div class="player-card">' +
+					'<button onclick="removePlayer()" class="btn-xs btn-danger">REMOVE</button><br/>' +
+					'<img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" />' +
+					'<br/>' +
+					'<span>Name:</span>' +
+					'<span id="display-name">'+ roster[i].name + '</span>' +
+					'<br/>' +
+					'<span>Position:</span>' +
+					'<span id="display-position">' + roster[i].pos + '</span>' +
+					'<br/>' +
+					'<span>Number:</span>' +
+					'<span id="display-number">' + roster[i].num + '</span>' +
+					'<br/>' +
+					'<ul id="tester"></ul>' +
+				'</div>';
+	template += playerCard;
+	rosterElem.empty();
+	rosterElem.append(template)
+}
 }
 
 
