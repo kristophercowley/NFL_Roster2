@@ -67,7 +67,7 @@ var rosterElem = $('.player-roster');
 for (var i = 0; i < roster.length; i++) {
 	var playerCard = '<div class="player-card">' +
 					'<button onclick="removePlayer('+ roster[i].id +')" class="btn-xs btn-danger">REMOVE</button><br/>' +
-					'<img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" />' +
+					'<img src="assets/images/oj.jpg" />' +
 					'<br/>' +
 					'<span class="display-name"><b>'+ roster[i].name + '</b></span>' +
 					'<br/>' +
