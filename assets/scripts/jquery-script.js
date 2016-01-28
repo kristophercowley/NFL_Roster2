@@ -10,7 +10,7 @@ function Player(id, name, pos, num) {
 	this.id = id;
 	this.name = name;
 	this.pos = pos;
-	this.num = num;	
+	this.num = num;
 }
 
 // var playerCard = '<div class="player-card">' +
@@ -30,20 +30,20 @@ function Player(id, name, pos, num) {
 // 				'</div>';
 
 //Find index of player by id
-function getIndex(id){
-	for(var i = 0; i < roster.length;i++){
-		if(id === roster[i].id){
-		return i
+function getIndex(id) {
+	for (var i = 0; i < roster.length; i++) {
+		if (id === roster[i].id) {
+			return i
 		}
 	}
 	return -1;
 }
 
 //Remove player
-function removePlayer(id){
-	var playerIndex = getIndex(id);	
-	if(playerIndex === -1){
-		return {error: "Player does not exist at this index"};
+function removePlayer(id) {
+	var playerIndex = getIndex(id);
+	if (playerIndex === -1) {
+		return { error: "Player does not exist at this index" };
 	}
 	roster.splice(playerIndex, 1);
 	drawPlayer();
@@ -61,27 +61,55 @@ function addPlayer(e) {
 }
 
 //Creates player objects/cards 
-function drawPlayer() {	
-var template = '';
-var rosterElem = $('.player-roster');
-for (var i = 0; i < roster.length; i++) {
-	var playerCard = '<div class="player-card">' +
-					'<button onclick="removePlayer('+ roster[i].id +')" class="btn-xs btn-danger">REMOVE</button><br/>' +
-					'<img src="assets/images/oj.jpg" />' +
-					'<br/>' +
-					'<span class="display-name"><b>'+ roster[i].name + '</b></span>' +
-					'<br/>' +
-					'<span class="display-position">' + roster[i].pos + '</span>' +
-					'<br/>' +
-					'<span class="display-number">' + roster[i].num + '</span>' +
-					'<br/>' +
-				'</div>';
-	template += playerCard;
-}
+function drawPlayer() {
+	var template = '';
+	var rosterElem = $('.player-roster');
+	for (var i = 0; i < roster.length; i++) {
+		var playerCard = '<div class="player-card">' +
+			'<button onclick="removePlayer(' + roster[i].id + ')" class="btn-xs btn-danger">REMOVE</button><br/>' +
+			'<img src="assets/images/oj.jpg" />' +
+			'<br/>' +
+			'<span class="display-name"><b>' + roster[i].name + '</b></span>' +
+			'<br/>' +
+			'<span class="display-position">' + roster[i].pos + '</span>' +
+			'<br/>' +
+			'<span class="display-number">' + roster[i].num + '</span>' +
+			'<br/>' +
+			'</div>';
+		template += playerCard;
+	}
 	rosterElem.empty();
 	rosterElem.append(template)
 }
- 
+
+
+
+//jquery card test
+var playerObj = {
+	name: "A",
+	pos: "Badass",
+	num: 333
+}
+function createPlayerCard(player){ 
+var $card = $('<div class="player-card">')
+var $rem = $('<button class="btn btn-danger">remove</button><br/>')
+	$rem.click(function(){
+	$card.remove();
+	})
+$card.append($rem);
+$card.append('<img src="assets/images/oj.jpg"/><br/>');
+$card.append('<span>'+ player.name +'</span><br/>');
+$card.append('<span>'+ player.pos +'</span><br/>');
+$card.append('<span>'+ player.num +'</span><br/>');
+
+$('.player-roster').append($card);
+}
+createPlayerCard(playerObj);
+
+
+
+
+
 //Test cases for api request and drawing
 var requestor = function () {
 	$.get('http://api.boisecodeworks.com/api/courses')
