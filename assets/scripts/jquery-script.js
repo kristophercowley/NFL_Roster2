@@ -12,10 +12,7 @@ function Player(id, name, pos, num) {
 	this.id = id;
 	this.name = name;
 	this.pos = pos;
-	this.num = num;
-	// this.removePlayer = function(){
-	// 	$('player').remove(this.id)
-	// }
+	this.num = num;	
 }
 
 // var playerCard = '<div class="player-card">' +
@@ -37,8 +34,9 @@ function Player(id, name, pos, num) {
 //Find index of player by id
 function getIndex(id){
 	for(var i = 0; i < roster.length;i++){
-		if(id === roster[i].id);
-		return i;
+		if(id === roster[i].id){
+		return i
+		}
 	}
 	return -1;
 }
@@ -50,49 +48,42 @@ function removePlayer(id){
 		return {error: "Player does not exist at this index"};
 	}
 	roster.splice(playerIndex, 1);
+	drawPlayer();
 }	
-			
+//Adds players to array and draws to screen		
 function addPlayer(e) {
 	e.preventDefault;
 	var pName = $('#player-name').val();
-	//$('#display-name').text(pName);
 	var pPosition = $('#player-position').val();
-	//$('#display-position').text(pPosition);
 	var pNumber = $('#player-number').val();
-	//$('#display-number').text(pNumber);
 	var temp = new Player(pId, pName, pPosition, pNumber);
-	//$('.player-roster').append(playerCard);
 	roster.push(temp);
 	pId++;
 	drawPlayer()
 }
 
-function drawPlayer() {
-	// $('#display-name').text(p.pName);
-	// $('#display-position').text(p.pPosition);
-	// $('#display-number').text(p.pNumber);	
+function drawPlayer() {	
 var template = '';
 var rosterElem = $('.player-roster');
 for (var i = 0; i < roster.length; i++) {
 	var playerCard = '<div class="player-card">' +
-					'<button onclick="removePlayer()" class="btn-xs btn-danger">REMOVE</button><br/>' +
+					'<button onclick="removePlayer('+ roster[i].id +')" class="btn-xs btn-danger">REMOVE</button><br/>' +
 					'<img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" />' +
 					'<br/>' +
 					'<span>Name:</span>' +
-					'<span id="display-name">'+ roster[i].name + '</span>' +
+					'<span class="display-name">'+ roster[i].name + '</span>' +
 					'<br/>' +
 					'<span>Position:</span>' +
-					'<span id="display-position">' + roster[i].pos + '</span>' +
+					'<span class="display-position">' + roster[i].pos + '</span>' +
 					'<br/>' +
 					'<span>Number:</span>' +
-					'<span id="display-number">' + roster[i].num + '</span>' +
+					'<span class="display-number">' + roster[i].num + '</span>' +
 					'<br/>' +
-					'<ul id="tester"></ul>' +
 				'</div>';
 	template += playerCard;
+}
 	rosterElem.empty();
 	rosterElem.append(template)
-}
 }
 
 
