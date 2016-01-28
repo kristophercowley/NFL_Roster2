@@ -1,8 +1,6 @@
-// $('form').submit(function(event){
-//  event.preventDefault;
-//  })
+$('form').submit(addPlayer)
  
-$('#addPlayer').click(addPlayer);
+// $('#addPlayer').click(addPlayer);
 
 var pId = 0;
 var roster = [];
@@ -52,7 +50,7 @@ function removePlayer(id){
 }	
 //Adds players to array and draws to screen		
 function addPlayer(e) {
-	e.preventDefault;
+	e.preventDefault();
 	var pName = $('#player-name').val();
 	var pPosition = $('#player-position').val();
 	var pNumber = $('#player-number').val();
@@ -62,6 +60,7 @@ function addPlayer(e) {
 	drawPlayer()
 }
 
+//Creates player objects/cards 
 function drawPlayer() {	
 var template = '';
 var rosterElem = $('.player-roster');
@@ -70,13 +69,10 @@ for (var i = 0; i < roster.length; i++) {
 					'<button onclick="removePlayer('+ roster[i].id +')" class="btn-xs btn-danger">REMOVE</button><br/>' +
 					'<img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" />' +
 					'<br/>' +
-					'<span>Name:</span>' +
-					'<span class="display-name">'+ roster[i].name + '</span>' +
+					'<span class="display-name"><b>'+ roster[i].name + '</b></span>' +
 					'<br/>' +
-					'<span>Position:</span>' +
 					'<span class="display-position">' + roster[i].pos + '</span>' +
 					'<br/>' +
-					'<span>Number:</span>' +
 					'<span class="display-number">' + roster[i].num + '</span>' +
 					'<br/>' +
 				'</div>';
@@ -85,16 +81,6 @@ for (var i = 0; i < roster.length; i++) {
 	rosterElem.empty();
 	rosterElem.append(template)
 }
-
-
-
-
-//event.preventDefault take away default behavior
-// $('form').submit(function(){
-//  event.preventDefault;
- 
-//  })
- 
  
 //Test cases for api request and drawing
 var requestor = function () {
@@ -104,7 +90,7 @@ var requestor = function () {
 
 		})
 }
-
+//API test stuffs
 function drawCourses(courses) { 
 	// var out = '';
 	for (var i = 0; i < courses.length; i++) {

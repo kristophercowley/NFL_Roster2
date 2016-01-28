@@ -5,6 +5,7 @@ body {
 .player-card {
 	display: inline-block;
 	border: 1px solid black;
+	text-align: center;
 }
 .player-roster {
 	border: 1px solid black;
