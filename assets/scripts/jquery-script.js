@@ -85,45 +85,70 @@ function drawPlayer() {
 
 
 //jquery card test
-var playerObj = {
-	name: "A",
-	pos: "Badass",
-	num: 333
-}
-function createPlayerCard(player){ 
-var $card = $('<div class="player-card">')
-var $rem = $('<button class="btn btn-danger">remove</button><br/>')
-	$rem.click(function(){
-	$card.remove();
-	})
-$card.append($rem);
-$card.append('<img src="assets/images/oj.jpg"/><br/>');
-$card.append('<span>'+ player.name +'</span><br/>');
-$card.append('<span>'+ player.pos +'</span><br/>');
-$card.append('<span>'+ player.num +'</span><br/>');
+// var playerObj = {
+// 	name: "A",
+// 	pos: "Badass",
+// 	num: 333
+// }
+// function createPlayerCard(player){ 
+// var $card = $('<div class="player-card">')
+// var $rem = $('<button class="btn btn-danger">remove</button><br/>')
+// 	$rem.click(function(){
+// 	$card.remove();
+// 	})
+// $card.append($rem);
+// $card.append('<img src="assets/images/oj.jpg"/><br/>');
+// $card.append('<span>'+ player.name +'</span><br/>');
+// $card.append('<span>'+ player.pos +'</span><br/>');
+// $card.append('<span>'+ player.num +'</span><br/>');
 
-$('.player-roster').append($card);
-}
-createPlayerCard(playerObj);
+// $('.player-roster').append($card);
+// }
+// createPlayerCard(playerObj);
 
 
 
 
 
 //Test cases for api request and drawing
-var requestor = function () {
-	$.get('http://api.boisecodeworks.com/api/courses')
-		.success(function (res) {
-			drawCourses(res)
+// var requestor = function () {
+// 	$.get('http://api.boisecodeworks.com/api/players')
+// 		.success(function (res) {
+// 			drawPlayers(res)
 
-		})
-}
-//API test stuffs
-function drawCourses(courses) { 
-	// var out = '';
-	for (var i = 0; i < courses.length; i++) {
-		$('#courses').append('<li>' + courses[i].name)
-		// out = out + ", " + courses[i].name
+// 		})
+// }
+// //API test stuffs
+// function drawPlayers(players) { 
+// 	// var out = '';
+// 	for (var i = 0; i < players.length; i++) {
+// 		$('#players').append('<li>' + players[i].name)
+// 		// out = out + ", " + players[i].name
 		 
-	}//$('p').text(out);
+// 	}//$('p').text(out);
+// }
+
+
+
+
+
+
+//api from store cart
+var requestor = function(){
+  var url = "http://bcw-getter.herokuapp.com/?url=";
+     var url2 = "http://api.cbssports.com/fantasy/players/list?version=3.0&SPORT=football&response_format=json";
+     var apiUrl = url + encodeURIComponent(url2);
+     $.get(apiUrl).success(function(res){
+             var resToObj = JSON.parse(res);
+             var liveRoster = resToObj.body.players;
+             drawPlayers(liveRoster)
+         })
 }
+ 
+function drawPlayers(players){
+     for(var i = 0; i < 100; i++){
+         $('#players').append('<li>' + players[i].fullname + '<img src="'+players[i].photo+'"/></li>');
+     }
+}
+
+requestor();
