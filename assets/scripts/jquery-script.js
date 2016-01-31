@@ -134,21 +134,21 @@ function drawPlayer() {
 
 
 //api from store cart
-var requestor = function(){
-  var url = "http://bcw-getter.herokuapp.com/?url=";
-     var url2 = "http://api.cbssports.com/fantasy/players/list?version=3.0&SPORT=football&response_format=json";
-     var apiUrl = url + encodeURIComponent(url2);
-     $.get(apiUrl).success(function(res){
-             var resToObj = JSON.parse(res);
-             var liveRoster = resToObj.body.players;
-             drawPlayers(liveRoster)
-         })
-}
+// var requestor = function(){
+//   var url = "http://bcw-getter.herokuapp.com/?url=";
+//      var url2 = "http://api.cbssports.com/fantasy/players/list?version=3.0&SPORT=football&response_format=json";
+//      var apiUrl = url + encodeURIComponent(url2);
+//      $.get(apiUrl).success(function(res){
+//              var resToObj = JSON.parse(res);
+//              var liveRoster = resToObj.body.players;
+//              drawPlayers(liveRoster)
+//          })
+// }
  
-function drawPlayers(players){
-     for(var i = 0; i < 100; i++){
-         $('#players').append('<li>' + players[i].fullname + '<img src="'+players[i].photo+'"/></li>');
-     }
-}
+// function drawPlayers(players){
+//      for(var i = 0; i < 100; i++){
+//          $('#players').append('<li>' + players[i].fullname + '<img src="'+players[i].photo+'"/></li>');
+//      }
+// }
 
-requestor();
+// requestor();

@@ -1,4 +1,4 @@
-<html>
+<html ng-app="nflApp">
 
 <head>
 	<meta charset="UTF-8">
@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="assets/styles/style.css" />
 </head>
 
-<body>
+<body ng-controller="PlayerController as pc">
 	<div class="panel container">
 		<div class="panel-heading">
 			<header>
@@ -17,13 +17,14 @@
 			</header>
 		</div>
 		<div class="panel-body">
-			<div class="player-roster">
-				<!--<div class="player-card">
+			<div class="player-roster" >
+				{{2+2}}
+				<div class="player-card" ng-repeat="player in pc.proRoster">
 					<button onclick="removePlayer()" class="btn-xs btn-danger">REMOVE</button><br/>
-					<img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" />
+					<img ng-src="{{player.photo}}" alt="No Photo found"/>
 					<br/>
 					<span>Name:</span>
-					<span id="display-name"></span>
+					<span id="display-name">{{player.fullname}}</span>
 					<br/>
 					<span>Position:</span>
 					<span id="display-position"></span>
@@ -32,7 +33,7 @@
 					<span id="display-number"></span>
 					<br/>
 					<ul id="tester"></ul>
-				</div>-->
+				</div>
 			</div>
 			<form class="player-form ">
 				<div id="createHeading" class="panel-heading">
@@ -57,23 +58,28 @@
 		</div>
 	</div>
 
-<!--testing jquery card without remove id-->
+	<!--testing jquery card without remove id-->
 	<div id="test">
 	</div>
-	
-	
-	
+
+
+
 	<button onclick="requestor()">request</button>
 	<ul id="players"></ul>
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-
+	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 	<script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
+	<script src="assets/scripts/app.js"></script>
+	<script src="assets/scripts/controller.js"></script>
+	<script src="assets/scripts/jquery-script.js"></script>
 	<script src="assets/scripts/script.js"></script>
 
-	<script src="assets/scripts/jquery-script.js"></script>
+
+
+
 </body>
 
 </html>
