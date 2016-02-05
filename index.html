@@ -1,88 +1,99 @@
 <html ng-app="nflApp">
 
 <head>
-	<meta charset="UTF-8">
-	<title>NFL Roster 2</title>
-	<link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap.css" />
-	<link rel="stylesheet" href="bower_components\bootstrap-material-design\dist\css\bootstrap-material-design.css" />
-	<link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
-	<link rel="stylesheet" href="assets/styles/style.css" />
+    <meta charset="UTF-8">
+    <title>NFL Roster 2</title>
+    <link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap.css" />
+    <link rel="stylesheet" href="bower_components\bootstrap-material-design\dist\css\bootstrap-material-design.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="assets/styles/style.css" />
 </head>
 
 <body ng-controller="PlayerController as pc">
-	<div class="panel container">
-		<div class="panel-heading">
-			<header>
-				<h1>MY NFL Roster2</h1>
-			</header>
-		</div>
-		<div class="panel-body">
+    <div class="panel container">
+        <div class="panel-heading">
+            <header>
+                <h1>MY NFL Roster2</h1>
+            </header>
+        </div>
+        <div class="panel-body">
             <!--<select ng-repeat="team in pc.proRoster.pro_team">
                 <option>Team:{{team}}</option>
             </select>-->
-			<div class="player-roster" >
-				{{2+2}}
-				<!--{{pc.player.fullname}}-->
-				<div ng-repeat="player in pc.proRoster track by $index" class="player-card">
-					<button ng-click="pc.remove($index)" class="btn-xs btn-danger">REMOVE</button><br/>
-					<img ng-src="{{player.photo}}" alt="No Photo found"/>
-					<br/>
-					<span>Name:</span>
-					<span>{{player.fullname}}</span>
-					<br/>
-					<span>Position:</span>
-					<span>{{player.position}}</span>
-					<br/>
-					<span>Number:</span>
-					<span>{{player.id}}</span>
-					<br/>
-					<span>Team:</span>
-					<span>{{player.pro_team}}</span>
-					<br/>
-				</div>
-			</div>
-			<form class="player-form ">
-				<div id="createHeading" class="panel-heading">
-					Create a player
-				</div>
-				<div>
-					<b>Player Name:</b>
-					<br/>
-					<input ng-model="playerName" type="text" placeholder="Name" />
-					<br/>
-					<b>Player Position: </b>
-					<br/>
-					<input ng-model="playerPosition" type="text" placeholder="Position" />
-					<br/>
-					<b>Player Number: </b>
-					<br/>
-					<input ng-model="playerNumber" type="number" placeholder="Number" />
-					<br/>
-					<button id="addPlayer">Add Player</button>
-				</div>
-			</form>
-		</div>
-	</div>
+            <div class="player-roster">
+                {{2+2}}
+                <div ng-repeat="player in pc.display track by $index" class="player-card">
+                    <button ng-click="pc.remove($index)" class="btn-xs btn-danger">REMOVE</button>
+                    <br/>
+                    <img ng-src="{{player.photo}}" alt="No Photo found" />
+                    <br/>
+                    <span>Name:</span>
+                    <span>{{player.fullname}}</span>
+                    <br/>
+                    <span>Position:</span>
+                    <span>{{player.position}}</span>
+                    <br/>
+                    <span>Number:</span>
+                    <span>{{player.id}}</span>
+                    <br/>
+                    <span>Team:</span>
+                    <span>{{player.pro_team}}</span>
+                    <br/>
+                </div>
+            </div>
+            <form class="player-form ">
+                <div id="createHeading" class="panel-heading">
+                    Create a player
+                </div>
+                <div>
+                    <b>Player Name:</b>
+                    <br/>
+                    <input ng-model="playerName" type="text" placeholder="Name" />
+                    <br/>
+                    <b>Player Position: </b>
+                    <br/>
+                    <input ng-model="playerPosition" type="text" placeholder="Position" />
+                    <br/>
+                    <b>Player Number: </b>
+                    <br/>
+                    <input ng-model="playerNumber" type="number" placeholder="Number" />
+                    <br/>
+                    <button id="addPlayer">Add Player</button>
+                </div>
+            </form>
+            <button ng-click="pc.requestor()">request online data</button>
+            <button ng-click="pc.getTeam('KC')">team</button>
+            <button ng-click="pc.getPos('QB')">Position</button>
+            <form>
+                <h4>Team Dropdown</h4>
+                <!--<select ng-repeat="team in pc.proRoster" ng-value="{{team}}">
+                    <option>Team:none</option>
+                    <option>Team:{{team.pro_team}}
+                    </option>-->
+                </select>
+            </form>
+        </div>
+    </div>
 
-	<!--testing jquery card without remove id-->
-	<div id="test">
-	</div>
+    <!--testing jquery card without remove id-->
+    <div id="test">
+    </div>
 
 
 
-	<button ng-click="pc.requestor()">request</button>
-    
-	<ul id="players"></ul>
-	<script src="bower_components/angular/angular.js"></script>
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
-	<script src="assets/scripts/app.js"></script>
-	<script src="assets/scripts/controller.js"></script>
-	<script src="assets/scripts/jquery-script.js"></script>
-	<script src="assets/scripts/script.js"></script>
+
+
+    <ul id="players"></ul>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
+    <script src="assets/scripts/app.js"></script>
+    <script src="assets/scripts/controller.js"></script>
+    <script src="assets/scripts/jquery-script.js"></script>
+    <script src="assets/scripts/script.js"></script>
 
 
 
