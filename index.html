@@ -17,12 +17,14 @@
 			</header>
 		</div>
 		<div class="panel-body">
+            <!--<select ng-repeat="team in pc.proRoster.pro_team">
+                <option>Team:{{team}}</option>
+            </select>-->
 			<div class="player-roster" >
 				{{2+2}}
 				<!--{{pc.player.fullname}}-->
-				<div ng-repeat="player in pc.proRoster" class="player-card" >
-                    {{player.fullname}}
-					<button ng-click="" class="btn-xs btn-danger">REMOVE</button><br/>
+				<div ng-repeat="player in pc.proRoster track by $index" class="player-card">
+					<button ng-click="pc.remove($index)" class="btn-xs btn-danger">REMOVE</button><br/>
 					<img ng-src="{{player.photo}}" alt="No Photo found"/>
 					<br/>
 					<span>Name:</span>

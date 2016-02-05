@@ -1,7 +1,7 @@
 app.controller('PlayerController', function () {
 	var vm = this;
 	vm.name = "Testies"
-
+   
 	vm.playerObj = {
 		fullname: "A",
 		photo: "www.boisecodeworks.com/assets/unify/img/bg/32.jpg",
@@ -20,8 +20,13 @@ app.controller('PlayerController', function () {
 	// 	$card.append('<span>' + player.num + '</span><br/>');
 	// }
 	vm.proRoster = [
-
 	];
+    
+     vm.remove = function(index){
+         console.log(index)
+        vm.proRoster.splice(index,1);
+    }
+    
 	//vm.proRoster.push(vm.playerObj)
 			
 	//now in draw function
