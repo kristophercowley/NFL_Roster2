@@ -19,20 +19,24 @@
 		<div class="panel-body">
 			<div class="player-roster" >
 				{{2+2}}
-				<div class="player-card" ng-repeat="player in pc.proRoster">
-					<button onclick="removePlayer()" class="btn-xs btn-danger">REMOVE</button><br/>
+				<!--{{pc.player.fullname}}-->
+				<div ng-repeat="player in pc.proRoster" class="player-card" >
+                    {{player.fullname}}
+					<button ng-click="" class="btn-xs btn-danger">REMOVE</button><br/>
 					<img ng-src="{{player.photo}}" alt="No Photo found"/>
 					<br/>
 					<span>Name:</span>
-					<span id="display-name">{{player.fullname}}</span>
+					<span>{{player.fullname}}</span>
 					<br/>
 					<span>Position:</span>
-					<span id="display-position"></span>
+					<span>{{player.position}}</span>
 					<br/>
 					<span>Number:</span>
-					<span id="display-number"></span>
+					<span>{{player.id}}</span>
 					<br/>
-					<ul id="tester"></ul>
+					<span>Team:</span>
+					<span>{{player.pro_team}}</span>
+					<br/>
 				</div>
 			</div>
 			<form class="player-form ">
@@ -42,15 +46,15 @@
 				<div>
 					<b>Player Name:</b>
 					<br/>
-					<input id="player-name" type="text" placeholder="Name" />
+					<input ng-model="playerName" type="text" placeholder="Name" />
 					<br/>
 					<b>Player Position: </b>
 					<br/>
-					<input id="player-position" type="text" placeholder="Position" />
+					<input ng-model="playerPosition" type="text" placeholder="Position" />
 					<br/>
 					<b>Player Number: </b>
 					<br/>
-					<input id="player-number" type="number" placeholder="Number" />
+					<input ng-model="playerNumber" type="number" placeholder="Number" />
 					<br/>
 					<button id="addPlayer">Add Player</button>
 				</div>
@@ -64,7 +68,8 @@
 
 
 
-	<button onclick="requestor()">request</button>
+	<button ng-click="pc.requestor()">request</button>
+    
 	<ul id="players"></ul>
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
