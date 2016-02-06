@@ -18,12 +18,21 @@
         </div>
 
         <div class="panel-body">
-            <!--Select box-->
+            <!--Select box for teams-->
             <form>
                 <label>Team Picker</label>
                 <select ng-model="lbl" ng-click="pc.getTeam(lbl)">
                     <option value="">Pick a Team</option>
                     <option ng-repeat="team in teams" value="{{team}}">{{team}}</option>
+                </select>
+            </form>
+            
+             <!--Select box for positions-->
+            <form>
+                <label>Pick by Position</label>
+                <select ng-model="lbl2" ng-click="pc.getPos(lbl2)">
+                    <option value="">Position</option>
+                    <option ng-repeat="pos in positions" value="{{pos}}">{{pos}}</option>
                 </select>
             </form>
 
