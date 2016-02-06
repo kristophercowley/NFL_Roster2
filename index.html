@@ -18,30 +18,43 @@
         </div>
 
         <div class="panel-body">
+            <!--Select box-->
+            <form>
+                <label>Team Picker</label>
+                <select ng-model="lbl" ng-click="pc.getTeam(lbl)">
+                    <option value="">Pick a Team</option>
+                    <option ng-repeat="team in teams" value="{{team}}">{{team}}</option>
+                </select>
+            </form>
 
-            <!-- Single button for team picker-->
+             <!--Single button for team picker
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Filter by Team<span class="caret"></span>
                 </button>
-                <ul ng-click="getTeam(selectedTeam)" class="dropdown-menu">
-                    <li ng-repeat="team in teams track by $index" ng-model="selectedTeam">{{team}}</li>
+                <ul ng-model="selectedTeam" class="dropdown-menu">
+                    <li ng-repeat="team in teams track by $index" ng-value="team"><a href="#">{{team}}<a></li>
                 </ul>
-            </div>
+            </div>-->
 
             <!--single button for position picker-->
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Action <span class="caret"></span>
+          <!--  <div class="btn-group">
+                <button  type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter by Position<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li ng-repeat="pos in positions"><a href="#" ng-model="pos">{{pos}}</a></li>
-
+                    <li ng-repeat="pos in positions track by $index"><a href='#'>{{pos}}</a></li>
                 </ul>
-            </div>
+            </div>-->
+
+            <button ng-click="pc.popPos(pc.proRoster)">populate positions</button>
+            <button ng-click="pc.popTeams(pc.proRoster)">populateTeams</button>
+            <button ng-click="pc.requestor()">request online data</button>
+            <!--<button ng-click="pc.getTeam('KC')">team</button>
+            <button ng-click="pc.getPos('QB')">Position</button>-->
 
             <div class="player-roster">
-                {{2+2}}
+                {{2+2}}{{opt}}{{lbl}}
                 <div ng-repeat="player in pc.display track by $index" class="player-card">
                     <button ng-click="pc.remove($index)" class="btn-xs btn-danger">REMOVE</button>
                     <br/>
@@ -81,10 +94,7 @@
                     <button id="addPlayer">Add Player</button>
                 </div>
             </form>
-            <button ng-click="pc.popTeams(pc.proRoster)">populateTeams</button>
-            <button ng-click="pc.requestor()">request online data</button>
-            <button ng-click="pc.getTeam('KC')">team</button>
-            <button ng-click="pc.getPos('QB')">Position</button>
+
             <form>
                 <h4>Team Dropdown</h4>
                 <button>asdfg</button>

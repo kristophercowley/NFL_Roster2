@@ -1,19 +1,22 @@
 app.controller('PlayerController', function ($scope) {
     var vm = this;
-    vm.name = "Testies"
+    vm.name = "Testies";
+    $scope.opt = "--this is opt for now";
+    
     //Test obj
     vm.playerObj = {
         fullname: "A",
         photo: "www.boisecodeworks.com/assets/unify/img/bg/32.jpg",
 
     }
+    
     //Declares arrays
     vm.proRoster = [];
     //vm.teamSort = [];
     vm.display = [];
     // Need to finish adding teams and positions
     $scope.teams = ['SF',"KC","IND","CHI","PHI","ARI","DET","GB","DEN"];
-    $scope.positions = ['QB','FB','RB']
+    $scope.positions = ['QB','FB','RB'];
 
     //Removes player from vm.display/screen
     vm.remove = function (index) {
@@ -23,8 +26,8 @@ app.controller('PlayerController', function ($scope) {
 
     //Filters players by a chosen team
     vm.getTeam = function (team) {
-        console.log("is this working?")
-        vm.display = [];
+        console.log("is getTeam working?")
+       vm.display = [];
         for (var i = 0; i < vm.proRoster.length; i++) {
             if (team === vm.proRoster[i].pro_team) {
                 vm.display.push(vm.proRoster[i]);
@@ -33,7 +36,7 @@ app.controller('PlayerController', function ($scope) {
     }
      //Filters players by a chosen position
     vm.getPos = function (pos) {
-        console.log("is this working?")
+        console.log("is getPos working?")
         vm.display = [];
         for (var i = 0; i < vm.proRoster.length; i++) {
             if (pos === vm.proRoster[i].position) {
@@ -52,6 +55,12 @@ app.controller('PlayerController', function ($scope) {
     //vm.popTeams(vm.proRoster);
     
     //Finds all position tags and pushes to array
+     vm.popPos = function(array){
+        for (var i = 0; i < array.length; i++) {
+            if($scope.positions.indexOf(array[i].position) == -1)
+            $scope.positions.push(array[i].position);
+        }  
+    }
     
     //Pulls players from api and pushes them to proRoster		
     vm.drawPlayers = function (player) {
