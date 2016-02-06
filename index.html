@@ -16,10 +16,30 @@
                 <h1>MY NFL Roster2</h1>
             </header>
         </div>
+
         <div class="panel-body">
-            <!--<select ng-repeat="team in pc.proRoster.pro_team">
-                <option>Team:{{team}}</option>
-            </select>-->
+
+            <!-- Single button for team picker-->
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter by Team<span class="caret"></span>
+                </button>
+                <ul ng-click="getTeam(selectedTeam)" class="dropdown-menu">
+                    <li ng-repeat="team in teams track by $index" ng-model="selectedTeam">{{team}}</li>
+                </ul>
+            </div>
+
+            <!--single button for position picker-->
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Action <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="pos in positions"><a href="#" ng-model="pos">{{pos}}</a></li>
+
+                </ul>
+            </div>
+
             <div class="player-roster">
                 {{2+2}}
                 <div ng-repeat="player in pc.display track by $index" class="player-card">
@@ -61,16 +81,19 @@
                     <button id="addPlayer">Add Player</button>
                 </div>
             </form>
+            <button ng-click="pc.popTeams(pc.proRoster)">populateTeams</button>
             <button ng-click="pc.requestor()">request online data</button>
             <button ng-click="pc.getTeam('KC')">team</button>
             <button ng-click="pc.getPos('QB')">Position</button>
             <form>
                 <h4>Team Dropdown</h4>
-                <!--<select ng-repeat="team in pc.proRoster" ng-value="{{team}}">
-                    <option>Team:none</option>
-                    <option>Team:{{team.pro_team}}
-                    </option>-->
-                </select>
+                <button>asdfg</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                    ...
+                    <li class="dropdown-header">Dropdown header</li>
+                    ...
+                </ul>
+
             </form>
         </div>
     </div>

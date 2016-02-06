@@ -1,22 +1,27 @@
-app.controller('PlayerController', function () {
+app.controller('PlayerController', function ($scope) {
     var vm = this;
     vm.name = "Testies"
-
+    //Test obj
     vm.playerObj = {
         fullname: "A",
         photo: "www.boisecodeworks.com/assets/unify/img/bg/32.jpg",
 
     }
-
+    //Declares arrays
     vm.proRoster = [];
-    vm.teamSort = [];
+    //vm.teamSort = [];
     vm.display = [];
+    // Need to finish adding teams and positions
+    $scope.teams = ['SF',"KC","IND","CHI","PHI","ARI","DET","GB","DEN"];
+    $scope.positions = ['QB','FB','RB']
 
+    //Removes player from vm.display/screen
     vm.remove = function (index) {
         console.log(index)
         vm.proRoster.splice(index, 1);
     }
 
+    //Filters players by a chosen team
     vm.getTeam = function (team) {
         console.log("is this working?")
         vm.display = [];
@@ -26,7 +31,7 @@ app.controller('PlayerController', function () {
             }
         } console.log(vm.display)
     }
-
+     //Filters players by a chosen position
     vm.getPos = function (pos) {
         console.log("is this working?")
         vm.display = [];
@@ -36,11 +41,19 @@ app.controller('PlayerController', function () {
             }
         } console.log(vm.display)
     }
-
-    // vm.getTeam('KC');
-
     
-			
+    //Finds all team tags and pushes to array
+    vm.popTeams = function(array){
+        for (var i = 0; i < array.length; i++) {
+            if($scope.teams.indexOf(array[i].pro_team) == -1)
+            $scope.teams.push(array[i].pro_team);
+        }  
+    }
+    //vm.popTeams(vm.proRoster);
+    
+    //Finds all position tags and pushes to array
+    
+    //Pulls players from api and pushes them to proRoster		
     vm.drawPlayers = function (player) {
         for (var i = 0; i < 1000; i++) {
             var temp = {}
