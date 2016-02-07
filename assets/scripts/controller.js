@@ -12,9 +12,9 @@ app.controller('PlayerController', function ($scope) {
     
     //Declares arrays
     vm.proRoster = [];
-    //vm.teamSort = [];
     vm.display = [];
-    // Need to finish adding teams and positions
+    
+    //Declare arrays and inserts test teams and positions info
     $scope.teams = ['SF',"KC","IND","CHI","PHI","ARI","DET","GB","DEN"];
     $scope.positions = ['QB','FB','RB'];
 
@@ -66,14 +66,16 @@ app.controller('PlayerController', function ($scope) {
     vm.drawPlayers = function (player) {
         for (var i = 0; i < 1000; i++) {
             var temp = {}
-            if (player.pro_status !== null) {
+            if (player[i].pro_status === "A") {
                 temp.fullname = player[i].fullname,
                 temp.photo = player[i].photo,
                 temp.pro_status = player[i].pro_status,
                 temp.pro_team = player[i].pro_team,
                 temp.id = player[i].id,
                 temp.position = player[i].position
-                vm.proRoster.push(temp)
+                vm.proRoster.push(temp),
+                vm.popTeams(vm.proRoster),
+                vm.popPos(vm.proRoster)
             }
         }
         console.log(vm.proRoster)

@@ -56,14 +56,14 @@
                 </ul>
             </div>-->
 
-            <button ng-click="pc.popPos(pc.proRoster)">populate positions</button>
-            <button ng-click="pc.popTeams(pc.proRoster)">populateTeams</button>
+            <!--<button ng-click="pc.popPos(pc.proRoster)">populate positions</button>
+            <button ng-click="pc.popTeams(pc.proRoster)">populateTeams</button>-->
             <button ng-click="pc.requestor()">request online data</button>
             <!--<button ng-click="pc.getTeam('KC')">team</button>
             <button ng-click="pc.getPos('QB')">Position</button>-->
 
             <div class="player-roster">
-                {{2+2}}{{opt}}{{lbl}}
+                {{2+2}}
                 <div ng-repeat="player in pc.display track by $index" class="player-card">
                     <button ng-click="pc.remove($index)" class="btn-xs btn-danger">REMOVE</button>
                     <br/>
@@ -80,6 +80,9 @@
                     <br/>
                     <span>Team:</span>
                     <span>{{player.pro_team}}</span>
+                     <br/>
+                     <span>Pro-Status:</span>
+                    <span>{{player.pro_status}}</span>
                     <br/>
                 </div>
             </div>
