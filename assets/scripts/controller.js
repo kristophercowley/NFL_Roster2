@@ -66,7 +66,7 @@ app.controller('PlayerController', function ($scope) {
     vm.drawPlayers = function (player) {
         for (var i = 0; i < 1000; i++) {
             var temp = {}
-            if (player[i].pro_status === "A") {
+            if (player[i].pro_status === "A" && player[i].photo !== "https://auth.cbssports.com/images/players/unknown-player-170x170.png") {
                 temp.fullname = player[i].fullname,
                 temp.photo = player[i].photo,
                 temp.pro_status = player[i].pro_status,
@@ -80,6 +80,7 @@ app.controller('PlayerController', function ($scope) {
         }
         console.log(vm.proRoster)
     }
+
 
     vm.requestor = function () {
         console.log("request sent")

@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap.css" />
     <link rel="stylesheet" href="bower_components\bootstrap-material-design\dist\css\bootstrap-material-design.css" />
     <link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" >
     <link rel="stylesheet" href="assets/styles/style.css" />
 </head>
 
@@ -18,6 +19,7 @@
         </div>
 
         <div class="panel-body">
+            <!--<i class="fa fa-headphones fa-5x">Font Awesome headphones?</i>-->
             <!--Select box for teams-->
             <form>
                 <label>Team Picker</label>
@@ -35,7 +37,11 @@
                     <option ng-repeat="pos in positions" value="{{pos}}">{{pos}}</option>
                 </select>
             </form>
-
+            
+            <form>
+                <label>Filter by Name</label>
+                <input type="text" ng-model="playerName">
+            </form>
              <!--Single button for team picker
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
