@@ -1,1 +1,1 @@
-var app = angular.module('nflApp',[]);
+var app = angular.module('nflApp',['firebase']);

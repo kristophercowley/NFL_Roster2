@@ -1,46 +1,31 @@
-app.controller('PlayerController', function($scope) {
+app.controller('PlayerController', function($scope, $firebaseArray) {
     var vm = this;
-    vm.name = "Testies";
     $scope.opt = "--this is opt for now";
     $scope.data = "Data not Loaded";
     $scope.rosterView = true;
+    // setTimeout(function(){
+    //     $scope.rosterView = false;
+    // },100)
     vm.proRoster = [];
     vm.display = [];
     vm.myTeam = [];
     // End local
+    // Start Firebase
     var db = new Firebase("https://mynflroster.firebaseio.com/");
-    var dbTeam = db.child("team");
-
-    var count = 0;
-    dbTeam.on("child_added", function(snap) {
-        count++;
-        console.log("added", snap.key());
-    });
-    dbTeam.once("value", function(snap) {
-        console.log("initial data loaded!", Object.keys(snap.val()).length === count);
-    //    console.log()
-    });
-
-
-    dbTeam.on("value", function(snapshot) {
-        console.log(snapshot.val());
-        vm.myTeam = snapshot.val();
-        console.log(vm.myTeam)
-    }, function(errorObject) {
-        console.log("The read failed: " + errorObject.code);
-    });
+    // All filtered players get backed up here
+    var dbBackup = db.child("backup");
+    vm.backup = new $firebaseArray(dbBackup);
+    // my Team goes here
+    var dbTeam = db.child("myTeam");
+    vm.myTeam = new $firebaseArray(dbTeam);
     // End firebase
-
-
-
-
 
     //Test obj
     vm.playerObj = {
         fullname: "A",
         photo: "www.boisecodeworks.com/assets/unify/img/bg/32.jpg",
-
     }
+    // vm.myTeam.$add(vm.playerObj)
 
     //Declares arrays
     // vm.proRoster = [];
@@ -51,23 +36,42 @@ app.controller('PlayerController', function($scope) {
     $scope.teams = ['SF', "KC", "IND", "CHI", "PHI", "ARI", "DET", "GB", "DEN"];
     $scope.positions = ['QB', 'FB', 'RB'];
 
+    // Create Custom Player
+    function CreatePlayer() {
+        this.fullname = $scope.playerName
+        this.position = $scope.playerPosition
+        this.id = $scope.playerNumber
+        this.pro_status = "Pending";
+        this.photo = "http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/";
+        this.pro_team = "Prospect";
+    }
+
+    // Adds Custom Player To My Team ????
+    $scope.addCustomPlayer = function() {
+        var tempPlayer = new CreatePlayer();
+        vm.myTeam.$add(tempPlayer);
+
+    }
+
+
 
     // Adds player to my team
     vm.addToMyTeam = function(index) {
-        vm.myTeam.push(vm.display[index]);
+        // vm.myTeam.push(vm.display[index]);
         vm.proRoster.splice(index, 1);
         vm.display.splice(index, 1);
         console.log(vm.myTeam);
         //working on firebase
-        dbTeam.set(vm.myTeam)
+        vm.myTeam.$add(vm.display[index])
     }
 
     //Removes player from vm.display/screen
     vm.remove = function(index) {
         console.log(index)
         // vm.proRoster.splice(index, 1);
-        vm.myTeam.splice(index, 1);
-        dbTeam.remove()
+        vm.proRoster.push(index);
+        // vm.myTeam.splice(index, 1);
+        vm.myTeam.$remove(index)
     }
 
     //Filters players by a chosen team
@@ -80,6 +84,7 @@ app.controller('PlayerController', function($scope) {
             }
         } console.log(vm.display)
     }
+
     //Filters players by a chosen position
     vm.getPos = function(pos) {
         console.log("is getPos working?")
@@ -119,7 +124,10 @@ app.controller('PlayerController', function($scope) {
                     temp.pro_team = player[i].pro_team,
                     temp.id = player[i].id,
                     temp.position = player[i].position
-                vm.proRoster.push(temp),
+                    vm.proRoster.push(temp),
+                    // sends angular fire a copy
+                    // vm.backup.$add(temp),
+                    // end copy
                     vm.popTeams(vm.proRoster),
                     vm.popPos(vm.proRoster)
             }
@@ -137,7 +145,7 @@ app.controller('PlayerController', function($scope) {
         $.get(vm.apiUrl).success(function(res) {
             vm.resToObj = JSON.parse(res);
             vm.liveRoster = vm.resToObj.body.players;
-            console.log(vm.liveRoster)
+            console.log(vm.liveRoster);
             vm.drawPlayers(vm.liveRoster);
             $scope.data = "Data Loaded";
             $scope.$apply();

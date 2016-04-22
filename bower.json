@@ -1,0 +1,22 @@
+{
+  "name": "NFL_Roster2",
+  "homepage": "https://github.com/kristophercowley/NFL_Roster2",
+  "authors": [
+    "Kristopher Cowley <kristopherleecowley@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.4.9",
+    "bootstrap-material-design": "~0.5.7"
+  }
+}
