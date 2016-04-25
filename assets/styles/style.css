@@ -33,6 +33,6 @@ input {
 panel-body{
     	background-image: url("../images/NFL3.jpg");
 }
-.center{
-    
+#main-container{
+    background-image: url("../images/NFL3.jpg");
 }
