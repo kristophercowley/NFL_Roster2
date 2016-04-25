@@ -30,9 +30,9 @@ input {
 	background-color: lightgreen;
 	color: black
 }
-/*panel-body{
-    	background-image: url("../images/NFL4.jpg");
-}*/
+.center{
+    text-align: center;
+}
 #main-container{
     background-image: url("../images/turf.jpg");
     color:white;
