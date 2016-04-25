@@ -66,53 +66,53 @@
             <h2 ng-show="rosterView" style="text-align:center">Select Player View</h2>
 
             <div class="player-roster">
-                <div class="container">
-                    <div class="row">
-                        <div ng-show="rosterView" ng-repeat="player in pc.display track by $index " class="player-card col-xs-12 col-sm-6 col-md-3">
-                            <button ng-hide="rosterView" ng-click="pc.remove($index)" class="btn btn-danger btn-block active">REMOVE</button>
-                            <button class="btn btn-success btn-block active" ng-click="pc.addToMyTeam($index)">Add</button>
-                            <br/>
-                            <img ng-src="{{player.photo}}" height="100px" alt="No Photo found" />
-                            <br/>
-                            <!--<span>Name:</span>-->
-                            <span>{{player.fullname}}</span>
-                            <br/>
-                            <span>Position:</span>
-                            <span>{{player.position}}</span>
-                            <br/>
-                            <span>Number:</span>
-                            <span>{{player.id}}</span>
-                            <br/>
-                            <span>Team:</span>
-                            <span>{{player.pro_team}}</span>
-                            <br/>
-                            <span>Pro-Status:</span>
-                            <span>{{player.pro_status}}</span>
-                            <br/>
-                        </div>
+                <div class="row">
+                    <div ng-show="rosterView" ng-repeat="player in pc.display track by $index " class="player-card col-xs-12 col-sm-4 col-md-2">
+                        <button ng-hide="rosterView" ng-click="pc.remove($index)" class="btn btn-danger btn-block active">REMOVE</button>
+                        <button class="btn btn-success btn-block active" ng-click="pc.addToMyTeam($index)">Add</button>
+                        <br/>
+                        <img ng-src="{{player.photo}}" height="100px" alt="No Photo found" />
+                        <br/>
+                        <!--<span>Name:</span>-->
+                        <span>{{player.fullname}}</span>
+                        <br/>
+                        <span>Position:</span>
+                        <span>{{player.position}}</span>
+                        <br/>
+                        <span>Number:</span>
+                        <span>{{player.id}}</span>
+                        <br/>
+                        <span>Team:</span>
+                        <span>{{player.pro_team}}</span>
+                        <br/>
+                        <span>Pro-Status:</span>
+                        <span>{{player.pro_status}}</span>
+                        <br/>
                     </div>
                 </div>
-                <div ng-hide="rosterView" ng-repeat="player in pc.myTeam track by $index " class="player-card col-xs-12 col-sm-6 col-md-3">
-                    <button ng-click="pc.remove($index)" class="btn btn-block btn-danger">REMOVE</button>
-                    <br/>
-                    <img ng-src="{{player.photo}}" height="100px" alt="No Photo found" />
-                    <br/>
-                    <!--<span>Name:</span>-->
-                    <span>{{player.fullname}}</span>
-                    <br/>
-                    <span>Position:</span>
-                    <span>{{player.position}}</span>
-                    <br/>
-                    <span>Number:</span>
-                    <span>{{player.id}}</span>
-                    <br/>
-                    <span>Team:</span>
-                    <span>{{player.pro_team}}</span>
-                    <br/>
-                    <span>Pro-Status:</span>
-                    <span>{{player.pro_status}}</span>
-                    <br/>
-                    <button ng-show="rosterView" class="btn btn-primary btn-block" ng-click="pc.addToMyTeam($index)">Add</button>
+                <div class="row">
+                    <div ng-hide="rosterView" ng-repeat="player in pc.myTeam track by $index " class="player-card col-xs-12 col-sm-4 col-md-2">
+                        <button ng-click="pc.remove($index)" class="btn btn-block btn-danger">REMOVE</button>
+                        <br/>
+                        <img ng-src="{{player.photo}}" height="100px" alt="No Photo found" />
+                        <br/>
+                        <!--<span>Name:</span>-->
+                        <span>{{player.fullname}}</span>
+                        <br/>
+                        <span>Position:</span>
+                        <span>{{player.position}}</span>
+                        <br/>
+                        <span>Number:</span>
+                        <span>{{player.id}}</span>
+                        <br/>
+                        <span>Team:</span>
+                        <span>{{player.pro_team}}</span>
+                        <br/>
+                        <span>Pro-Status:</span>
+                        <span>{{player.pro_status}}</span>
+                        <br/>
+                        <button ng-show="rosterView" class="btn btn-primary btn-block" ng-click="pc.addToMyTeam($index)">Add</button>
+                    </div>
                 </div>
             </div>
         </div>
