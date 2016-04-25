@@ -15,7 +15,7 @@ body {
 }
 .player-form {
 	/*background-color: darkgreen;*/
-	background-image: url("../images/NFL3.jpg");
+	background-image: url("../images/turf2.jpg");
 	border: 1px solid black;
 }
 input {
@@ -30,9 +30,10 @@ input {
 	background-color: lightgreen;
 	color: black
 }
-panel-body{
-    	background-image: url("../images/NFL3.jpg");
-}
 .center{
-    
+    text-align: center;
+}
+#main-container{
+    background-image: url("../images/turf.jpg");
+    color:white;
 }

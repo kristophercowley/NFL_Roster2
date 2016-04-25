@@ -1,4 +1,4 @@
-app.controller('PlayerController', function($scope, $firebaseArray) {
+app.controller('PlayerController', function($scope, $firebaseArray, PlayerFactory) {
     var vm = this;
     $scope.opt = "--this is opt for now";
     $scope.data = "Data not Loaded";
@@ -10,15 +10,25 @@ app.controller('PlayerController', function($scope, $firebaseArray) {
     vm.display = [];
     vm.myTeam = [];
     // End local
+    
     // Start Firebase
-    var db = new Firebase("https://mynflroster.firebaseio.com/");
+    // var db = new Firebase("https://mynflroster.firebaseio.com/");
     // All filtered players get backed up here
-    var dbBackup = db.child("backup");
-    vm.backup = new $firebaseArray(dbBackup);
+    // var dbBackup = db.child("backup");
+    // vm.backup = new $firebaseArray(dbBackup);
     // my Team goes here
-    var dbTeam = db.child("myTeam");
-    vm.myTeam = new $firebaseArray(dbTeam);
+    // var dbTeam = db.child("myTeam");
+    // vm.myTeam = new $firebaseArray(dbTeam);
     // End firebase
+    
+    // Player-Factory handles firebase call references
+    var pf = PlayerFactory;
+    vm.backup = new $firebaseArray(pf.dbBackup);
+    vm.myTeam = new $firebaseArray(pf.dbTeam);
+    // setTimeout(function(){
+    //     console.log(pf)
+    // },5000);
+    // End Player Factory
 
     //Test obj
     vm.playerObj = {

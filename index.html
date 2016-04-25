@@ -2,9 +2,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NFL Roster 2</title>
     <link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap.css" />
-    <!--<link rel="stylesheet" href="bower_components\bootstrap-material-design\dist\css\bootstrap-material-design.css" />-->
     <link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/style.css" />
@@ -12,73 +12,92 @@
 </head>
 
 <body ng-controller="PlayerController as pc">
-    <div class="panel container">
-        <div class="panel-heading">
-            <header>
-                <h1>MY NFL ROSTER <span style="float:right">{{data}} <button class="btn btn-sm btn-danger active" ng-click="pc.requestor()">refresh</button></span></h1>
-            </header>
+    <div id="main-container" class="panel container">
+        <div class="panel-heading panel-default">
+            <div class="row">
+                <div class=" col-xs-12 col-sm-4" style="color:black">
+                    <ul class="list-group">
+
+                        <!--Filter by team-->
+                        <li class="list-group-item">
+                            <label><span>Team Picker</span>
+                                <select ng-model="lbl" ng-click="pc.getTeam(lbl)">
+                                    <option value="">Pick a Team</option>
+                                    <option ng-repeat="team in teams" value="{{team}}">{{team}}</option>
+                                </select>
+                            </label>
+                        </li>
+
+                        <!--Select box for positions-->
+                        <li class="list-group-item">
+                            <label><span>Pick by Position</span>
+                                <select ng-model="lbl2" ng-click="pc.getPos(lbl2)">
+                                    <option value="">Position</option>
+                                    <option ng-repeat="pos in positions" value="{{pos}}">{{pos}}</option>
+                                </select>
+                            </label>
+                        </li>
+
+                        <!--Filter by name-->
+                        <li class="list-group-item">
+                            <label><span>Filter by Name</span>
+                                <input type="text" ng-model="search" />
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 center">
+                    <h1>MY NFL ROSTER</h1>
+                </div>
+                <div class="col-xs-12 col-sm-4 center">
+                    <span class="btn-group">
+                         <h3 style="background:grey">{{data}} </h3>
+                         <button class="btn btn-danger btn-block active" ng-click="pc.requestor()">Refresh Player API</button>
+                         <button class="btn btn-primary btn-block active" ng-click="rosterView = true">Pick Players</button>
+                         <button class="btn btn-primary btn-block active" ng-click="rosterView = false">Show my Team</button>
+                    </span>
+                </div>
+            </div>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body panel-default">
             <!--Select box for teams-->
-            <form>
-                <label>Team Picker</label>
-                <select ng-model="lbl" ng-click="pc.getTeam(lbl)">
-                    <option value="">Pick a Team</option>
-                    <option ng-repeat="team in teams" value="{{team}}">{{team}}</option>
-                </select>
-
-                <!--Select box for positions-->
-                <label>Pick by Position</label>
-                <select ng-model="lbl2" ng-click="pc.getPos(lbl2)">
-                    <option value="">Position</option>
-                    <option ng-repeat="pos in positions" value="{{pos}}">{{pos}}</option>
-                </select>
-
-                <label>Filter by Name</label>
-                <input type="text" ng-model="playerName">
-                <span>{{2+2}}</span>
-                <span class="btn-group" ><button class="btn btn-primary active" ng-click="rosterView = true">Pick Players</button><button class="btn btn-primary active" ng-click="rosterView = false">Show my Team</button></span>
-            </form>
-            <h2 ng-hide="rosterView" style="text-align:center">My Team</h2>
-            <h2 ng-show="rosterView" style="text-align:center">Pick Players</h2>
-
-
-            <!--<button ng-click="pc.popPos(pc.proRoster)">populate positions</button>
-            <button ng-click="pc.popTeams(pc.proRoster)">populateTeams</button>-->
-            <!--<button ng-click="pc.requestor()">request online data</button>-->
-            <!--<button ng-click="pc.getTeam('KC')">team</button>
-            <button ng-click="pc.getPos('QB')">Position</button>-->
+            <h2 ng-hide="rosterView" style="text-align:center">My Team View</h2>
+            <h2 ng-show="rosterView" style="text-align:center">Select Player View</h2>
 
             <div class="player-roster">
-                <div ng-show="rosterView" ng-repeat="player in pc.display track by $index" class="player-card">
-                    <button ng-hide="rosterView" ng-click="pc.remove($index)" class="btn btn-danger btn-block active">REMOVE</button>
-                    <button class="btn btn-success btn-block active" ng-click="pc.addToMyTeam($index)">Add</button>
-                    <br/>
-                    <img ng-src="{{player.photo}}" alt="No Photo found" />
-                    <br/>
-                    <span>Name:</span>
-                    <span>{{player.fullname}}</span>
-                    <br/>
-                    <span>Position:</span>
-                    <span>{{player.position}}</span>
-                    <br/>
-                    <span>Number:</span>
-                    <span>{{player.id}}</span>
-                    <br/>
-                    <span>Team:</span>
-                    <span>{{player.pro_team}}</span>
-                    <br/>
-                    <span>Pro-Status:</span>
-                    <span>{{player.pro_status}}</span>
-                    <br/>
+                <div class="container">
+                    <div class="row">
+                        <div ng-show="rosterView" ng-repeat="player in pc.display track by $index " class="player-card col-xs-12 col-sm-6 col-md-3">
+                            <button ng-hide="rosterView" ng-click="pc.remove($index)" class="btn btn-danger btn-block active">REMOVE</button>
+                            <button class="btn btn-success btn-block active" ng-click="pc.addToMyTeam($index)">Add</button>
+                            <br/>
+                            <img ng-src="{{player.photo}}" height="100px" alt="No Photo found" />
+                            <br/>
+                            <!--<span>Name:</span>-->
+                            <span>{{player.fullname}}</span>
+                            <br/>
+                            <span>Position:</span>
+                            <span>{{player.position}}</span>
+                            <br/>
+                            <span>Number:</span>
+                            <span>{{player.id}}</span>
+                            <br/>
+                            <span>Team:</span>
+                            <span>{{player.pro_team}}</span>
+                            <br/>
+                            <span>Pro-Status:</span>
+                            <span>{{player.pro_status}}</span>
+                            <br/>
+                        </div>
+                    </div>
                 </div>
-                <div ng-hide="rosterView" ng-repeat="player in pc.myTeam track by $index" class="player-card">
-                    <button ng-click="pc.remove($index)" class="btn-xs btn-danger">REMOVE</button>
+                <div ng-hide="rosterView" ng-repeat="player in pc.myTeam track by $index " class="player-card col-xs-12 col-sm-6 col-md-3">
+                    <button ng-click="pc.remove($index)" class="btn btn-block btn-danger">REMOVE</button>
                     <br/>
-                    <img ng-src="{{player.photo}}" alt="No Photo found" />
+                    <img ng-src="{{player.photo}}" height="100px" alt="No Photo found" />
                     <br/>
-                    <span>Name:</span>
+                    <!--<span>Name:</span>-->
                     <span>{{player.fullname}}</span>
                     <br/>
                     <span>Position:</span>
@@ -96,43 +115,38 @@
                     <button ng-show="rosterView" class="btn btn-primary btn-block" ng-click="pc.addToMyTeam($index)">Add</button>
                 </div>
             </div>
-            <form class="player-form ">
-                <div id="createHeading" class="panel-heading">
-                    <button class="btn btn-block btn-success active" ng-click="playerCreator = !playerCreator"> Create a  Custom Player </button>
-                </div>
-                <div ng-show="playerCreator">
-                    <b>Player Name:</b>
-                    <br/>
-                    <input ng-model="playerName" type="text" placeholder="Name" />
-                    <br/>
-                    <b>Player Position: </b>
-                    <br/>
-                    <input ng-model="playerPosition" type="text" placeholder="Position" />
-                    <br/>
-                    <b>Player Number: </b>
-                    <br/>
-                    <input ng-model="playerNumber" type="number" placeholder="Number" />
-                    <br/>
-                    <button id="addPlayer" ng-click="addCustomPlayer()">Add Player</button>
-                </div>
-            </form>
         </div>
+        <form class="player-form ">
+            <div id="createHeading" class="panel-heading">
+                <button class="btn btn-block btn-success active" ng-click="playerCreator = !playerCreator"> Create a Custom Player </button>
+            </div>
+            <div ng-show="playerCreator">
+                <b>Player Name:</b>
+                <br/>
+                <input ng-model="playerName" type="text" placeholder="Name" />
+                <br/>
+                <b>Player Position: </b>
+                <br/>
+                <input ng-model="playerPosition" type="text" placeholder="Position" />
+                <br/>
+                <b>Player Number: </b>
+                <br/>
+                <input ng-model="playerNumber" type="number" placeholder="Number" />
+                <br/>
+                <button id="addPlayer" ng-click="addCustomPlayer()">Create Custom Player</button>
+            </div>
+        </form>
     </div>
 
-    <!--testing jquery card without remove id-->
-    <!--<div id="test">
-    </div>-->
-
-    <ul id="players"></ul>
+    <!--Scripts-->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
-
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!--<script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>-->
     <script src="assets/scripts/app.js"></script>
+    <script src="components/player-service.js"></script>
     <script src="assets/scripts/controller.js"></script>
     <script src="assets/scripts/jquery-script.js"></script>
     <script src="assets/scripts/script.js"></script>
